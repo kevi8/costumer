@@ -1,0 +1,56 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model Costumer 
+
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                @if(@HttpContextAccessor.HttpContext.Session.GetInt32("UserId") ==@Model.UserId ){<h3 class="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-4">Welcome</h3>}
+                <h3 class="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-4">@Model.FirstName @Model.LastName</h3>
+                <p class="text-center p fw-bold mb-5 mx-1 mx-md-4 mt-4"> @Model.Email</p>
+                 @if(@HttpContextAccessor.HttpContext.Session.GetInt32("UserId") ==@Model.UserId ){
+
+
+                    <form class="mx-1 mx-md-4" asp-action="EditCostumer" method="post">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" asp-for="FirstName" />
+                      <label class="form-label" for="form3Example1c" asp-for="FirstName">First Name</label>
+                      <span asp-validation-for="FirstName"></span>
+                    </div>
+
+
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" asp-for="LastName"/>
+                      <label class="form-label" for="form3Example1c" asp-for="LastName">Last Name</label>
+                      <span asp-validation-for="LastName"></span>
+                    </div>
+                  </div>
+
+
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" value="Edit" class="btn btn-primary btn-lg">Edit</button>
+                  </div>
+
+                </form>
+                  }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

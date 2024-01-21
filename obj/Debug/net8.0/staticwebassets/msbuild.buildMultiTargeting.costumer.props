@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\costumer.props" />
+</Project>
